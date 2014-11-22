@@ -10,8 +10,3 @@ INSERT INTO ARTIST VALUES(5, 'Elmore James', 'Blues');
 INSERT INTO ARTIST VALUES(6, 'Willie Nelson', 'Country');
 INSERT INTO ARTIST VALUES(7, 'Brad Paisley', 'Country');
 INSERT INTO ARTIST VALUES(8, 'Epica', 'Hard Rock’);
-
-CREATE TABLE CONCERT(ID INT PRIMARY KEY, DATE, GENRE VARCHAR(255));
-INSERT INTO ARTIST VALUES(1, 'Cher Lloyd', 'Pop');
-INSERT INTO ARTIST VALUES(2, 'Elysion', 'Hard Rock');
-INSERT INTO ARTIST VALUES(3, 'The Lovecrave', 'Hard Rock');
