@@ -1,12 +1,12 @@
-package ticket.repositories;
+package ticket.controller;
 
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import ticket.controller.ArtistRepository;
 import ticket.model.Artist;
+import ticket.repositories.ArtistRepository;
 
 @Named
 public class ArtistController {

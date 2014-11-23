@@ -1,6 +1,5 @@
 package ticket.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,8 +12,8 @@ public class Artist {
 	private int id;
 	private String name;
 	private String genre;
-	@ManyToOne
-	private List<Concert> concerts;// = new ArrayList<Consert>();
+	@OneToMany
+	private List<Concert> concerts;
 	private String generesPossible[] = {"pop", "blues", "hard rock", "country"};
 	
 	public Artist(int id, String name, String genre) {

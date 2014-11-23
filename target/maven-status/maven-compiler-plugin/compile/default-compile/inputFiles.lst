@@ -1,5 +1,5 @@
-/Users/Bappel/NITH/Java/ticketservice/src/main/java/ticket/repositories/ArtistController.java
-/Users/Bappel/NITH/Java/ticketservice/src/main/java/ticket/controller/ArtistRepository.java
-/Users/Bappel/NITH/Java/ticketservice/src/main/java/ticket/controller/ConcertRepository.java
+/Users/Bappel/NITH/Java/ticketservice/src/main/java/ticket/controller/ArtistController.java
 /Users/Bappel/NITH/Java/ticketservice/src/main/java/ticket/model/Concert.java
 /Users/Bappel/NITH/Java/ticketservice/src/main/java/ticket/model/Artist.java
+/Users/Bappel/NITH/Java/ticketservice/src/main/java/ticket/repositories/ArtistRepository.java
+/Users/Bappel/NITH/Java/ticketservice/src/main/java/ticket/repositories/ConcertRepository.java

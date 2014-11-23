@@ -1,4 +1,4 @@
-package ticket.controller;
+package ticket.repositories;
 
 import java.util.List;
 

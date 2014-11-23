@@ -1,5 +1,5 @@
-ticket/controller/ConcertRepository.class
-ticket/repositories/ArtistController.class
+ticket/repositories/ArtistRepository.class
 ticket/model/Artist.class
-ticket/controller/ArtistRepository.class
 ticket/model/Concert.class
+ticket/repositories/ConcertRepository.class
+ticket/controller/ArtistController.class
