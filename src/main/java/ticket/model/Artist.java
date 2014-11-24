@@ -23,11 +23,18 @@ public class Artist {
 		this.genre = genre;
 		
 	}
+	
+	public Artist() {
+	}
+	
 	public int getId() {
 		return id;
 	}
 	public String getGenre() {
 		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	public void setId(int id) {
 		this.id = id;

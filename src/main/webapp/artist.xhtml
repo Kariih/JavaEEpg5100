@@ -1,5 +1,6 @@
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0"
           xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"  xmlns:p="http://primefaces.org/ui">
+          
     <html>
     <head><title>Artist page</title></head>
     <body>
@@ -24,7 +25,7 @@
     <h:form>
     	<h2>View artist</h2>
     	<h:outputLabel>
-    		  <p:dataList value="#{artistController.showArtist}" var="artist" type="ordered">
+    		  <p:dataList value="#{artistController.artists}" var="artist" type="ordered">
       		  <f:facet name="header">
         	    Artister
        		 </f:facet>
