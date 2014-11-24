@@ -54,23 +54,22 @@
              
             <pm:content>
                     <h:form>
-			        <h2>Add new artist</h2>
-			        <br/>
-			        <h:outputLabel value="Name: "/>
-			        <h:inputText value="#{artistController.artist.name}"/>
-			        <br/>
-			        <h:outputLabel value="Genre: "/>
-			        <h:inputText value="#{artistController.artist.genre}"/>
-			        <select name="genre">
-					<option value="Hard Rock">Hard Rock</option>
-					<option value="Pop">Pop</option>
-					<option value="Country">Country</option>
-					<option value="Blues">Blues</option>
-					</select>
-			        <br/>
-			        <h:commandButton value="Save" type="submit" action="#{artistController.addArtist}"/>
+                    <p:button outcome="pm:first" value="Go Back" />	
+                    <h2>Add new artist</h2>
+					<p:scrollPanel mode="native" style="width:500px;height:700px">
+				        <br/>
+				        <h:outputLabel value="Name: "/>
+				        <h:inputText value="#{artistController.artist.name}"/>
+				        <select name="genre">
+						<option value="Hard Rock">Hard Rock</option>
+						<option value="Pop">Pop</option>
+						<option value="Country">Country</option>
+						<option value="Blues">Blues</option>
+						</select>
+				        <br/>
+				        <h:commandButton value="Save" type="submit" action="#{artistController.addArtist}"/>
+			        </p:scrollPanel>	
 			    </h:form>
-                <p:button outcome="pm:first" value="Go Back" />
             </pm:content>
         </pm:page>
  
