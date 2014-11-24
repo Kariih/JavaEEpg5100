@@ -16,6 +16,8 @@ public class Concert {
 	private Artist artist;
 	@Min(0)
 	private int price;
+	private String name;
+
 	private String place;
 	private String description;
 	private int totalTicket;
@@ -33,7 +35,16 @@ public class Concert {
 		this.totalTicket = totalTicket;
 		this.totalTicketLeft = totalTicketFree;
 	}
+	public Concert(){
+		
+	}	
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 	public Date getConsertDate() {
 		return consertDate;
 	}

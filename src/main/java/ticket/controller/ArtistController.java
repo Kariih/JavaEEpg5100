@@ -5,12 +5,12 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
-
+import javax.inject.Named;
 
 import ticket.model.Artist;
 import ticket.repositories.ArtistRepository;
 
-@ManagedBean
+@Named
 @RequestScoped
 public class ArtistController {
 	
@@ -22,10 +22,6 @@ public class ArtistController {
 	
 	public Artist getArtist() {
 		return artist;
-	}
-
-	public void setArtist(Artist artist) {
-		this.artist = artist;
 	}
 
 	public void addArtist() {	

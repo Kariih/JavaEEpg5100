@@ -25,7 +25,7 @@ public class ConcertRepository {
 	}
 	@SuppressWarnings("unchecked")
 	public List<Concert> findAll(){
-	 return (List<Concert>)	em.createQuery("select a from ARTIST a").getResultList();	
+	 return (List<Concert>)	em.createQuery("select c from CONSERT c").getResultList();	
 	}
 	public Concert findOne(int id){
 		return em.find(Concert.class, id);
