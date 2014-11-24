@@ -1,5 +1,6 @@
 package ticket.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -10,12 +11,12 @@ import javax.inject.Named;
 import ticket.model.Artist;
 import ticket.repositories.ArtistRepository;
 
-@Named
+@ManagedBean
 @RequestScoped
 public class ArtistController {
 	
-	List<Artist> artists = showArtists();
-	
+	List<Artist> artists = new ArrayList<Artist>();
+
 	@Inject
 	private ArtistRepository repository;
 	private Artist artist;
@@ -27,7 +28,7 @@ public class ArtistController {
 	public void addArtist() {	
 		repository.add(this.artist);
 	}
-	public List<Artist> showArtists(){
+	public List<Artist> getArtists(){
 		artists = repository.findAll();
 		return artists;
 	}

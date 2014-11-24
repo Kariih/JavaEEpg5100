@@ -18,17 +18,34 @@
              
             <pm:content>
                 <h:form>
-                    <p:button outcome="pm:second" value="Administer konserter og artister" />
-			    	<h2>View artist</h2>
+                    <p:layout style="min-width:400px;min-height:500px;">
+				    <p:layoutUnit position="west" resizable="false" size="500" minSize="500" maxSize="500">
+				        <h2>Artister</h2>
 			    	<h:outputLabel>
 			    		  <p:dataList value="#{artistController.artists}" var="artist" type="ordered">
 			      		  <f:facet name="header">
-			        	    Artister
 			       		 </f:facet>
 			       		 #{artist.name}, #{artist.genre}
 			    		</p:dataList>
 			    	</h:outputLabel>
+				    </p:layoutUnit>
+				 	
+				    <p:layoutUnit position="center">
+				        <h2>Konserter</h2>
+			    	<h:outputLabel>
+			    		  <p:dataList value="#{concertController.concerts}" var="consert" type="ordered">
+			      		  <f:facet name="header">
+			       		 </f:facet>
+			       		 #{concert.name},#{concert.price},#{concert.description}
+			    		</p:dataList>
+			    	</h:outputLabel>
+				    </p:layoutUnit>
+				    <p:layoutUnit position="east">
+				        <p:button outcome="pm:second" value="Administer konserter og artister" />
+				    </p:layoutUnit>
+				</p:layout>
                 </h:form>
+
             </pm:content>
         </pm:page>
  

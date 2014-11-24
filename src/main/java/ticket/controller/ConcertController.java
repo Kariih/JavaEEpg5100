@@ -1,5 +1,6 @@
 package ticket.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -10,11 +11,11 @@ import javax.inject.Named;
 import ticket.model.Concert;
 import ticket.repositories.ConcertRepository;
 
-@Named
+@ManagedBean
 @RequestScoped
 public class ConcertController {
 	
-	List<Concert> concerts = showConcerts();
+	List<Concert> concerts = new ArrayList<Concert>();
 	
 	@Inject
 	private ConcertRepository repository;
@@ -27,7 +28,7 @@ public class ConcertController {
 	public void addArtist() {	
 		repository.add(this.concert);
 	}
-	public List<Concert> showConcerts(){
+	public List<Concert> getConcerts(){
 		concerts = repository.findAll();
 		return concerts;
 	}

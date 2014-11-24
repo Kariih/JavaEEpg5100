@@ -27,7 +27,7 @@ public class ArtistRepository {
 	}
 	@SuppressWarnings("unchecked")
 	public List<Artist> findAll(){
-	 return (List<Artist>)	em.createQuery("select a from ARTIST a").getResultList();	
+	 return (List<Artist>)	em.createQuery("select a from " + Artist.class.getName() + " a").getResultList();	
 	}
 	public Artist findOne(int id){
 		return em.find(Artist.class, id);

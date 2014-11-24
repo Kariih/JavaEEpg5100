@@ -14,7 +14,7 @@ public class Artist {
 	private String genre;
 	@OneToMany
 	private List<Concert> concerts;
-	private String generesPossible[] = {"pop", "blues", "hard rock", "country"};
+//	private String generesPossible[] = {"pop", "blues", "hard rock", "country"};
 	
 	public Artist(int id, String name, String genre) {
 		super();
@@ -48,8 +48,7 @@ public class Artist {
 
 	@Override
 	public String toString() {
-		return "artist [id=" + id + ", name=" + name + ", generes="
-				+ Arrays.toString(generesPossible) + "]";
+		return "artist [id=" + id + ", name=" + name + ", generes=" + genre;
 	}
 	
 }

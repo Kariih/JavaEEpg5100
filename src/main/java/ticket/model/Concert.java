@@ -11,7 +11,7 @@ public class Concert {
 	@Id
 	@GeneratedValue
 	private int id;
-	private Date consertDate;
+	private Date date;
 	@ManyToOne
 	private Artist artist;
 	@Min(0)
@@ -20,20 +20,20 @@ public class Concert {
 
 	private String place;
 	private String description;
-	private int totalTicket;
-	private int totalTicketLeft;
+	private int ticketstotal;
+	private int ticketsleft;
 	
 	public Concert(Date consertDate, Artist artist, int price,
 			String place, String description, int totalTicket,
 			int totalTicketFree) {
 		super();
-		this.consertDate = consertDate;
+		this.date = consertDate;
 		this.artist = artist;
 		this.price = price;
 		this.place = place;
 		this.description = description;
-		this.totalTicket = totalTicket;
-		this.totalTicketLeft = totalTicketFree;
+		this.ticketstotal = totalTicket;
+		this.ticketsleft = totalTicketFree;
 	}
 	public Concert(){
 		
@@ -46,7 +46,7 @@ public class Concert {
 		this.name = name;
 	}
 	public Date getConsertDate() {
-		return consertDate;
+		return date;
 	}
 	public int getId() {
 		return id;
@@ -56,7 +56,7 @@ public class Concert {
 		this.id = id;
 	}
 	public void setConsertDate(Date consertDate) {
-		this.consertDate = consertDate;
+		this.date = consertDate;
 	}
 
 	public Artist getArtistName() {
@@ -92,27 +92,19 @@ public class Concert {
 	}
 
 	public int getTotalTicket() {
-		return totalTicket;
+		return ticketstotal;
 	}
 
 	public void setTotalTicket(int totalTicket) {
-		this.totalTicket = totalTicket;
+		this.ticketstotal = totalTicket;
 	}
 
 	public int getTotalTicketLeft() {
-		return totalTicketLeft;
+		return ticketsleft;
 	}
 
 	public void setTotalTicketLeft(int totalTicketFree) {
-		this.totalTicketLeft = totalTicketFree;
-	}
-
-	@Override
-	public String toString() {
-		return "Consert [consertDate=" + consertDate + ", artistName="
-				+ artist + ", price=" + price + ", place=" + place
-				+ ", description=" + description + ", totalTicket="
-				+ totalTicket + ", totalTicketFree=" + totalTicketLeft + "]";
+		this.ticketstotal = totalTicketFree;
 	}
 	
 }

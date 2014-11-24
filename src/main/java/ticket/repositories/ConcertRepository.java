@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import ticket.model.Concert;
 
 @Stateless
@@ -25,7 +24,7 @@ public class ConcertRepository {
 	}
 	@SuppressWarnings("unchecked")
 	public List<Concert> findAll(){
-	 return (List<Concert>)	em.createQuery("select c from CONSERT c").getResultList();	
+	 return (List<Concert>)	em.createQuery("select c from " + Concert.class.getName() + " c").getResultList();	
 	}
 	public Concert findOne(int id){
 		return em.find(Concert.class, id);
