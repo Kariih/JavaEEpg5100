@@ -3,7 +3,6 @@ package ticket.model;
 import java.util.Date;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 
 @Entity
 public class Concert {
@@ -13,13 +12,13 @@ public class Concert {
 	private int id;
 	private String name;
 	private Date cdate;
+	@ManyToOne
+	private Artist artist;
 	private int price;
 	private String place;
 	private String description;
 	private int ticketstotal;
 	private int ticketsleft;
-	@ManyToOne
-	private Artist artist;
 	
 	public Concert(Date cdate, Artist artist, int price,
 			String place, String description, int ticketstotal,

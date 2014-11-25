@@ -28,7 +28,6 @@ public class ConcertController {
 	}
 	public List<Concert> getConcerts(){
 		concerts = repository.findAll();
-		//System.out.println(concerts);
 		return concerts;
 	}
 }

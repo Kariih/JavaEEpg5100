@@ -6,8 +6,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
-
 import ticket.model.Artist;
 import ticket.repositories.ArtistRepository;
 
@@ -19,7 +17,7 @@ public class ArtistController {
 
 	@Inject
 	private ArtistRepository repository;
-	private Artist artist;
+	Artist artist = new Artist();
 	
 	public Artist getArtist() {
 		return artist;
