@@ -11,23 +11,21 @@ public class Concert {
 	@Id
 	@GeneratedValue
 	private int id;
-	private Date date;
-	@ManyToOne
-	private Artist artist;
-	@Min(0)
-	private int price;
 	private String name;
-
+	private Date cdate;
+	private int price;
 	private String place;
 	private String description;
 	private int ticketstotal;
 	private int ticketsleft;
+	@ManyToOne
+	private Artist artist;
 	
-	public Concert(Date consertDate, Artist artist, int price,
+	public Concert(Date cdate, Artist artist, int price,
 			String place, String description, int ticketstotal,
 			int ticketsleft) {
 		super();
-		this.date = consertDate;
+		this.cdate = cdate;
 		this.artist = artist;
 		this.price = price;
 		this.place = place;
@@ -45,8 +43,8 @@ public class Concert {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getConsertDate() {
-		return date;
+	public Date getCdate() {
+		return cdate;
 	}
 	public int getId() {
 		return id;
@@ -55,8 +53,8 @@ public class Concert {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setDate(Date consertDate) {
-		this.date = consertDate;
+	public void setCdate(Date cdate) {
+		this.cdate = cdate;
 	}
 
 	public Artist getArtistName() {

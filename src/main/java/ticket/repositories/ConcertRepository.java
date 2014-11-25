@@ -5,12 +5,14 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import ticket.model.Concert;
 
 @Stateless
 public class ConcertRepository {
 	
 	@PersistenceContext(unitName = "concertunit")
+
 	private EntityManager em;
 	
 	public void add(Concert concert){
