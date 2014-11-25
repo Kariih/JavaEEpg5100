@@ -36,7 +36,8 @@
 			    		  <p:dataList value="#{concertController.concerts}" var="concert" type="ordered">
 			      		  <f:facet name="header">
 			       		 </f:facet>
-			       		 #{concert.name}
+			       		 			       		                      #{concert.name} by
+                                              #{concert.artistName.name}
 			    		</p:dataList>
 			    	</h:outputLabel>
 				    </p:layoutUnit>
@@ -60,15 +61,19 @@
 				        <br/>
 				        <h:outputLabel value="Name: "/>
 				        <h:inputText value="#{artistController.artist.name}"/>
-				       <select name="#{artistController.artist.name}">
-						<option value="Hard Rock">Hard Rock</option>
-						<option value="Pop">Pop</option>
-						<option value="Country">Country</option>
-						<option value="Blues">Blues</option>
-						</select>
-				        <br/>
+				        <h:outputLabel value="Genre: "/>
+				        <p:selectOneRadio id="genre" value="#{artistController.artist.genre}">
+				            <f:selectItem itemLabel="Hard Rock" itemValue="Hard Rock" />
+				            <f:selectItem itemLabel="Pop" itemValue="Pop" />
+				            <f:selectItem itemLabel="Country" itemValue="Country" />
+				            <f:selectItem itemLabel="Blues" itemValue="Blues" />
+				        </p:selectOneRadio>
 				        <h:commandButton value="Save" type="submit" action="#{artistController.addArtist()}"/>
 			        </p:scrollPanel>	
+			        <h2>New Consert</h2>
+					<p:scrollPanel mode="native" style="width:500px;height:700px">
+						
+					</p:scrollPanel>
 			    </h:form>
             </pm:content>
         </pm:page>

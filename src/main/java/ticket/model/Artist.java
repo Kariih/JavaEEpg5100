@@ -5,14 +5,18 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 public class Artist {
+	@GenericGenerator(name="incrementor" , strategy="increment")
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="incrementor")
 	private int id;
 	private String name;
 	private String genre;
 	@OneToMany
+	@JoinColumn(name = "ARTIST_ID")
 	private List<Concert> concerts;
 //	private String generesPossible[] = {"pop", "blues", "hard rock", "country"};
 	
@@ -44,11 +48,6 @@ public class Artist {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	@Override
-	public String toString() {
-		return "artist [id=" + id + ", name=" + name + ", generes=" + genre;
 	}
 	
 }

@@ -11,9 +11,10 @@ public class Concert {
 	@GeneratedValue
 	private int id;
 	private String name;
-	//@Temporal(value = null)
+	@Temporal(TemporalType.DATE)
 	private Date cdate;
 	@ManyToOne
+	@JoinColumn(name = "ARTIST_ID")
 	private Artist artist;
 	private int price;
 	private String place;
