@@ -60,15 +60,14 @@
 				        <br/>
 				        <h:outputLabel value="Name: "/>
 				        <h:inputText value="#{artistController.artist.name}"/>
-				        <h:inputText value="#{artistController.artist.name}"/>
-				       <!-- <select name="Genre">
-						<option value="#{artistController.artist.genre}">Hard Rock</option>
-						<option value="#{artistController.artist.genre}">Pop</option>
-						<option value="#{artistController.artist.genre}">Country</option>
-						<option value="#{artistController.artist.genre}">Blues</option>
-						</select>-->
+				       <select name="#{artistController.artist.name}">
+						<option value="Hard Rock">Hard Rock</option>
+						<option value="Pop">Pop</option>
+						<option value="Country">Country</option>
+						<option value="Blues">Blues</option>
+						</select>
 				        <br/>
-				        <h:commandButton value="Save" type="submit" action="#{artistController.addArtist(this,artist)}"/>
+				        <h:commandButton value="Save" type="submit" action="#{artistController.addArtist()}"/>
 			        </p:scrollPanel>	
 			    </h:form>
             </pm:content>

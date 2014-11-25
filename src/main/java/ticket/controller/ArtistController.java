@@ -31,6 +31,4 @@ public class ArtistController {
 		return artists;
 	}
 	
-	
-	
 }
