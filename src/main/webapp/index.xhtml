@@ -12,6 +12,7 @@
     </h:head>
      
     <h:body>
+    <p:messages id="msgs" showDetail="true"/>
     	<pm:header title="Billettservice"></pm:header>
 		    <p:tabView>
 		    	<p:tab title="Admin">
@@ -32,8 +33,8 @@
 						</h:form>
 				    </p:layoutUnit>
 				    <p:layoutUnit position="center">
-				        <h2>Legg til konsert</h2>
 				        <h:form>
+				        <h2>Legg til konsert</h2>
 	        			<h:outputLabel value="Tittel: "/>
 				    	<h:inputText value="#{concertController.concert.name}"/>
 				        <h:outputLabel value="Dato:"/>
@@ -47,7 +48,8 @@
 				        <h:outputLabel value="Totalt antall billetter: "/>
 				        <h:inputText value="#{concertController.concert.ticketstotal}"/>
 				        <h:outputLabel value="Artist: "/>
-				        <p:selectOneMenu id="artistForConcert" value="#{artistController.artist}">
+				   		 <p:selectOneMenu id="artistForConcert" value="#{artistController.artist}">
+				        				<f:selectItem value="#{none}" itemLabel="Select one"/>
 				        				<f:selectItems value="#{artistController.artists}" var="artist"
     									itemLabel="#{artist.name}"/>
 						</p:selectOneMenu>
@@ -55,39 +57,55 @@
 				         </h:form>
 				    </p:layoutUnit>
 				    <p:layoutUnit position="east" resizable="true" size="300" minSize="30" maxSize="300">
-				    	<h2>Slett konsert</h2>
 				    	<h:form>
+				    	<h2>Slett konsert</h2>
 									<p:selectOneMenu id="id" value="#{concertController.concert}">
 							            <f:selectItems value="#{concertController.concerts}" var="concert"
     									itemLabel="#{concert.name}"/>
 							        </p:selectOneMenu>
-					        <h:commandButton value="Slett" type="submit" action="#{concertController.deleteConcert(concert)}"/>
+					        <h:commandButton value="Slett" type="submit" action="#{concertController.deleteConcert()}"/>
 				    	</h:form>
 				    </p:layoutUnit>
 				</p:layout>
 		        </p:tab>
 		        <p:tab title="Konserter">
-		        <h:form>
-		        	<h:outputLabel>
-			    		  <p:dataList value="#{concertController.concerts}" var="concert" type="ordered">
-			      		  <f:facet name="header">
-			       		 </f:facet>
-			       		 			#{concert.name} -  #{concert.artist.name}                     
-			    		</p:dataList>
-			    	</h:outputLabel>
+		        <h:form>			    
+		        		<h:inputText value="#{concertController.concert.ticketstotal}"/>
+		        		<h:commandButton value="Ser mer info om valgt konsert" type="submit" oncomplete="dlg.show()" update=":form2"/>
+			    		<p:selectOneRadio id="genre" value="#{concertController.input}">
+								<f:selectItems value="#{concertController.concerts}" var="concert" itemLabel="#{concert.name}"/>
+						 </p:selectOneRadio>
+						  <h:commandButton value="Ser mer info om valgt konsert" type="submit" oncomplete="dlg.show()" update=":form2"/>
 			     </h:form>
+			     <h:form id="form2">
+			     		 <p:dialog widgetVar="dlg" modal="true">
+		                passed value:<p:inputText value="#{concertController.input.name}"/>
+		                </p:dialog>
+		        </h:form>
 		        </p:tab>
 		        <p:tab title="Artister">
 					<h2>Artister</h2>
 					 <h:form>
 			    	<h:outputLabel>
 			    		  <p:dataList value="#{artistController.artists}" var="artist" type="ordered">
-				      		  <f:facet name="header">
-				       		 </f:facet>
 				       		 #{artist.name}, #{artist.genre}
 			    		</p:dataList>
 			    	</h:outputLabel>
 			    	 </h:form>
+		        </p:tab>
+		        <p:tab title="Reserver billett">
+		        	<p:scrollPanel mode="native" style="width:400px;height:700px">
+					 <h:form>
+			    		<h2>Reserver billett til konsert</h2>
+			    			 <p:selectOneMenu id="id" value="#{concertController.concert}">
+							            <f:selectItems value="#{concertController.concerts}" var="concert"
+    									itemLabel="#{concert.name}"/>
+							        </p:selectOneMenu>
+						<h:outputLabel value="Velg antall billetter: "/>
+				        <h:inputText value="#{concertController.concert.ticketstotal}"/>
+							<h:commandButton value="Reserver billett" type="submit" action="#{concertController.deleteConcert()}"/>
+			    	 </h:form>
+			    	 </p:scrollPanel>
 		        </p:tab>
 		    </p:tabView>
  </h:body>

@@ -15,6 +15,7 @@ public class ConcertRepository {
 	private EntityManager em;
 	
 	public void add(Concert concert){
+		System.out.println(concert);
 		em.persist(concert);
 	}
 	public void delete(int id){

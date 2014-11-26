@@ -25,11 +25,19 @@ public class ConcertController {
 	public void addConcert() {	
 		repository.add(this.concert);
 	}
-	public void deleteConcert(Concert concert){
-		repository.delete(concert.getId());
+	public void deleteConcert(){
+		repository.delete(this.concert.getId());
 	}
 	public List<Concert> getConcerts(){
 		concerts = repository.findAll();
 		return concerts;
 	}
+
+    public Concert getInput() {
+        return concert;
+    }
+
+    public void setInput(Concert concert) {
+        this.concert = concert;
+    }
 }

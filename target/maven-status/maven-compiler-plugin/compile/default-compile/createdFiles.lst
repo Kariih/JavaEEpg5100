@@ -1,5 +1,4 @@
 ticket/controller/ConcertController.class
-view/CalendarView.class
 ticket/repositories/ArtistRepository.class
 ticket/model/Artist.class
 ticket/model/Concert.class
