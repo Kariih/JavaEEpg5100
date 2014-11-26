@@ -17,14 +17,16 @@ public class ConcertController {
 	
 	@Inject
 	private ConcertRepository repository;
-	private Concert concert;
+	Concert concert = new Concert();
 	
 	public Concert getConcert() {
 		return concert;
 	}
-
-	public void addArtist() {	
+	public void addConcert() {	
 		repository.add(this.concert);
+	}
+	public void deleteConcert(Concert concert){
+		repository.delete(concert.getId());
 	}
 	public List<Concert> getConcerts(){
 		concerts = repository.findAll();

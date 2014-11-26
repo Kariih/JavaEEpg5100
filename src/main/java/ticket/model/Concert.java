@@ -4,11 +4,14 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 public class Concert {
 	
+	@GenericGenerator(name="incrementorC" , strategy="increment")
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="incrementorC")
 	private int id;
 	private String name;
 	@Temporal(TemporalType.DATE)
@@ -58,12 +61,12 @@ public class Concert {
 		this.cdate = cdate;
 	}
 
-	public Artist getArtistName() {
+	public Artist getArtist() {
 		return artist;
 	}
 
-	public void setArtistName(Artist artistName) {
-		this.artist = artistName;
+	public void setArtist(Artist artist) {
+		this.artist = artist;
 	}
 
 	public int getPrice() {

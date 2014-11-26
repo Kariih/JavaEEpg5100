@@ -12,72 +12,84 @@
     </h:head>
      
     <h:body>
-         
-        <pm:page id="first">
-            <pm:header title="Billettservice"></pm:header>
-             
-            <pm:content>
-                <h:form>
-                    <p:layout style="min-width:400px;min-height:500px;">
-				    <p:layoutUnit position="west" resizable="false" size="500" minSize="500" maxSize="500">
-				        <h2>Artister</h2>
-			    	<h:outputLabel>
-			    		  <p:dataList value="#{artistController.artists}" var="artist" type="ordered">
-			      		  <f:facet name="header">
-			       		 </f:facet>
-			       		 #{artist.name}, #{artist.genre}
-			    		</p:dataList>
-			    	</h:outputLabel>
+    	<pm:header title="Billettservice"></pm:header>
+		    <p:tabView>
+		    	<p:tab title="Admin">
+		    		<p:layout style="max-width:900px;min-height:700px;">
+				    <p:layoutUnit position="west" resizable="true" size="400" minSize="30" maxSize="300">
+				    	<h:form>
+				    	<h2>Legg til artist</h2>
+				        <h:outputLabel value="Name: "/>
+							        <h:inputText value="#{artistController.artist.name}"/>
+							        <h:outputLabel value="Genre: "/>
+							        <p:selectOneRadio id="genre" value="#{artistController.artist.genre}">
+							            <f:selectItem itemLabel="Hard Rock" itemValue="Hard Rock" />
+							            <f:selectItem itemLabel="Pop" itemValue="Pop" />
+							            <f:selectItem itemLabel="Country" itemValue="Country" />
+							            <f:selectItem itemLabel="Blues" itemValue="Blues" />
+							        </p:selectOneRadio>
+							        <h:commandButton value="Save" type="submit" action="#{artistController.addArtist()}"/>
+						</h:form>
 				    </p:layoutUnit>
-				 	
 				    <p:layoutUnit position="center">
-				        <h2>Konserter</h2>
-			    	<h:outputLabel>
+				        <h2>Legg til konsert</h2>
+				        <h:form>
+	        			<h:outputLabel value="Tittel: "/>
+				    	<h:inputText value="#{concertController.concert.name}"/>
+				        <h:outputLabel value="Dato:"/>
+				        <p:calendar id="date" value="#{concertController.concert.cdate}" />
+				        <h:outputLabel value="Price: "/>
+				        <h:inputText value="#{concertController.concert.price}"/>
+				        <h:outputLabel value="Place: "/>
+				        <h:inputText value="#{concertController.concert.place}"/>
+				        <h:outputLabel value="Beskrivelse: "/>
+				        <h:inputText value="#{concertController.concert.description}"/>
+				        <h:outputLabel value="Totalt antall billetter: "/>
+				        <h:inputText value="#{concertController.concert.ticketstotal}"/>
+				        <h:outputLabel value="Artist: "/>
+				        <p:selectOneMenu id="artistForConcert" value="#{artistController.artist}">
+				        				<f:selectItems value="#{artistController.artists}" var="artist"
+    									itemLabel="#{artist.name}"/>
+						</p:selectOneMenu>
+				         <h:commandButton value="Save" type="submit" action="#{concertController.addConcert()}"/>
+				         </h:form>
+				    </p:layoutUnit>
+				    <p:layoutUnit position="east" resizable="true" size="300" minSize="30" maxSize="300">
+				    	<h2>Slett konsert</h2>
+				    	<h:form>
+									<p:selectOneMenu id="id" value="#{concertController.concert}">
+							            <f:selectItems value="#{concertController.concerts}" var="concert"
+    									itemLabel="#{concert.name}"/>
+							        </p:selectOneMenu>
+					        <h:commandButton value="Slett" type="submit" action="#{concertController.deleteConcert(concert)}"/>
+				    	</h:form>
+				    </p:layoutUnit>
+				</p:layout>
+		        </p:tab>
+		        <p:tab title="Konserter">
+		        <h:form>
+		        	<h:outputLabel>
 			    		  <p:dataList value="#{concertController.concerts}" var="concert" type="ordered">
 			      		  <f:facet name="header">
 			       		 </f:facet>
-			       		 			       		                      #{concert.name} by
-                                              #{concert.artistName.name}
+			       		 			#{concert.name} -  #{concert.artist.name}                     
 			    		</p:dataList>
 			    	</h:outputLabel>
-				    </p:layoutUnit>
-				    <p:layoutUnit position="east">
-				        <p:button outcome="pm:second" value="Administer konserter og artister" />
-				    </p:layoutUnit>
-				</p:layout>
-                </h:form>
-
-            </pm:content>
-        </pm:page>
- 
-        <pm:page id="second">
-            <pm:header title="admin console"></pm:header>
-             
-            <pm:content>
-                    <h:form>
-                    <p:button outcome="pm:first" value="Go Back" />	
-                    <h2>Add new artist</h2>
-					<p:scrollPanel mode="native" style="width:500px;height:700px">
-				        <br/>
-				        <h:outputLabel value="Name: "/>
-				        <h:inputText value="#{artistController.artist.name}"/>
-				        <h:outputLabel value="Genre: "/>
-				        <p:selectOneRadio id="genre" value="#{artistController.artist.genre}">
-				            <f:selectItem itemLabel="Hard Rock" itemValue="Hard Rock" />
-				            <f:selectItem itemLabel="Pop" itemValue="Pop" />
-				            <f:selectItem itemLabel="Country" itemValue="Country" />
-				            <f:selectItem itemLabel="Blues" itemValue="Blues" />
-				        </p:selectOneRadio>
-				        <h:commandButton value="Save" type="submit" action="#{artistController.addArtist()}"/>
-			        </p:scrollPanel>	
-			        <h2>New Consert</h2>
-					<p:scrollPanel mode="native" style="width:500px;height:700px">
-						
-					</p:scrollPanel>
-			    </h:form>
-            </pm:content>
-        </pm:page>
- 
-    </h:body>
+			     </h:form>
+		        </p:tab>
+		        <p:tab title="Artister">
+					<h2>Artister</h2>
+					 <h:form>
+			    	<h:outputLabel>
+			    		  <p:dataList value="#{artistController.artists}" var="artist" type="ordered">
+				      		  <f:facet name="header">
+				       		 </f:facet>
+				       		 #{artist.name}, #{artist.genre}
+			    		</p:dataList>
+			    	</h:outputLabel>
+			    	 </h:form>
+		        </p:tab>
+		    </p:tabView>
+ </h:body>
      
 </html>

@@ -1,6 +1,5 @@
 package ticket.model;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.*;
@@ -18,7 +17,6 @@ public class Artist {
 	@OneToMany
 	@JoinColumn(name = "ARTIST_ID")
 	private List<Concert> concerts;
-//	private String generesPossible[] = {"pop", "blues", "hard rock", "country"};
 	
 	public Artist(int id, String name, String genre) {
 		super();

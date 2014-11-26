@@ -12,14 +12,13 @@ import ticket.model.Concert;
 public class ConcertRepository {
 	
 	@PersistenceContext(unitName = "concertunit")
-
 	private EntityManager em;
 	
 	public void add(Concert concert){
 		em.persist(concert);
 	}
 	public void delete(int id){
-		em.remove(id);
+		em.remove(findOne(id));
 	}
 	public void update(Concert concert){
 		em.persist(concert);
