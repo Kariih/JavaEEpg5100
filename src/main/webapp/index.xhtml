@@ -29,7 +29,7 @@
 				<h2>Konserter</h2>
 						        <h:form>			    
 		        		
-			    		<p:selectOneRadio id="genre" value="#{concertController.concertId}">
+			    		<p:selectOneRadio id="consert" value="#{concertController.concertId}">
 								<f:selectItems value="#{concertController.concerts}" var="concert" 
 								itemLabel="#{concert.name}" itemValue="#{concert.id}"/>
 						 </p:selectOneRadio>
@@ -44,6 +44,8 @@
 		              Pris: <p:outputLabel value="#{concertController.input.price}"/>
 		              Sted: <p:outputLabel value="#{concertController.input.place}"/>
 		              <br /> <p:outputLabel value="#{concertController.input.description}"/>
+		              <br />
+		              <br />
 		              Antall ledige billetter: <p:outputLabel value="#{concertController.input.ticketstotal - concertController.input.ticketsSold}"/> 
 		              Antall billetter totalt: <p:outputLabel value="#{concertController.input.ticketstotal}"/>     
   					</h:form>
@@ -72,7 +74,7 @@
 			    	 	<p:calendar id="dateStart" value="#{concertController.startDate}" />
 			    	 	<h:outputLabel value="Slutt dato:"/>
 		        		<p:calendar id="dateEnd" value="#{concertController.endDate}" />
-		        		<h:commandButton value="Se konserter mellom valgte datoer" type="submit" action="#{concertController.getConcertsByTime()}"/>
+		        		<h:commandButton value="Se konserter mellom valgte datoer" type="submit" action="#{concertController.getConcertsByTime()}" update="concert"/>
 			    	 </h:form>
 			    	 </p:scrollPanel>
 			    	 <h1>ADMIN PANEL</h1>

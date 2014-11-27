@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TemporalType;
 
 import ticket.model.Concert;
 
@@ -31,9 +32,11 @@ public class ConcertRepository {
 	}
 	public Concert findOne(int id){
 		return em.find(Concert.class, id);
-	}
-	@SuppressWarnings("unchecked")
+	}	
 	public List<Concert> findByDate(Date start, Date end){
-		return (List<Concert>)	em.createQuery("select c from " + Concert.class.getName() + " c where c.cdate between '"+ start +"' and '" + end +"'").getResultList();	
+		@SuppressWarnings("unchecked")
+		List<Concert> concerts = em.createQuery("SELECT c FROM " + Concert.class.getName() + " c WHERE c.cdate between :startDate AND :endDate")
+		.setParameter("startDate", start, TemporalType.DATE).setParameter("endDate", end, TemporalType.DATE).getResultList();
+		return concerts;
 	}
 }
