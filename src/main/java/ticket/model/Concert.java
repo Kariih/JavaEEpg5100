@@ -23,11 +23,11 @@ public class Concert {
 	private String place;
 	private String description;
 	private int ticketstotal;
-	private int ticketsleft;
-	
+	private int ticketsSold;
+
 	public Concert(Date cdate, Artist artist, int price,
 			String place, String description, int ticketstotal,
-			int ticketsleft) {
+			int ticketsSold) {
 		super();
 		this.cdate = cdate;
 		this.artist = artist;
@@ -35,7 +35,7 @@ public class Concert {
 		this.place = place;
 		this.description = description;
 		this.ticketstotal = ticketstotal;
-		this.ticketsleft = ticketsleft;
+		this.ticketsSold = ticketsSold;
 	}
 	public Concert(){
 		
@@ -101,12 +101,11 @@ public class Concert {
 		this.ticketstotal = ticketstotal;
 	}
 
-	public int getTicketsleft() {
-		return ticketsleft;
+	public int getTicketsSold() {
+		return ticketsSold;
 	}
 
-	public void setTicketsleft(int ticketsleft) {
-		this.ticketsleft = ticketsleft;
+	public void setTicketsSold(int ticketsSold) {
+		this.ticketsSold = ticketsSold;
 	}
-	
 }

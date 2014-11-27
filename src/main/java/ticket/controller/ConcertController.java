@@ -32,20 +32,10 @@ public class ConcertController {
 	}
 	public void setReservedTickets(int reservedTickets) {
 		this.reservedTickets = reservedTickets;
-	}
-
-	private String searchString;
-	
-	public String getSearchString() {
-		return searchString;
-	}
-	public void setSearchString(String searchString) {
-		this.searchString = searchString;
-	}
-	
+	}	
 	public void updateTickets(){
-		this.concert = concerts.get(concertId);
-		this.concert.setTicketsleft(concert.getTicketstotal() - reservedTickets);
+		this.concert = repository.findOne(concertId);
+		this.concert.setTicketsSold(concert.getTicketsSold() - reservedTickets);
 		repository.update(this.concert);
 	}
 	
@@ -80,7 +70,7 @@ public class ConcertController {
         return repository.findOne(concertId);
     }
 
-    public void setInput(int id) {
+	public void setInput(int id) {
         this.concertId = id;
     }
 }

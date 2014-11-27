@@ -8,15 +8,67 @@
     <f:view renderKitId="PRIMEFACES_MOBILE" />
      
     <h:head>
- 
     </h:head>
      
     <h:body>
+    	<h:outputStylesheet name="css/style.css" />
     <p:messages id="msgs" showDetail="true"/>
-    	<pm:header title="Billettservice"></pm:header>
-		    <p:tabView>
-		    	<p:tab title="Admin">
-		    		<p:layout style="max-width:900px;min-height:700px;">
+				<h1>KONSERTER OG ARTISTER</h1>
+				<p:layout style="max-width:900px;min-height:500px;">
+				<p:layoutUnit position="west" resizable="true" size="400" minSize="30" maxSize="300">
+			<h2>Artister</h2>
+					 <h:form>
+			    	<h:outputLabel>
+			    		  <p:dataList value="#{artistController.artists}" var="artist" type="ordered">
+				       		 #{artist.name}, #{artist.genre}
+			    		</p:dataList>
+			    	</h:outputLabel>
+			    	 </h:form>
+				</p:layoutUnit>
+				<p:layoutUnit position="center">
+				<h2>Konserter</h2>
+						        <h:form>			    
+		        		
+			    		<p:selectOneRadio id="genre" value="#{concertController.concertId}">
+								<f:selectItems value="#{concertController.concerts}" var="concert" 
+								itemLabel="#{concert.name}" itemValue="#{concert.id}"/>
+						 </p:selectOneRadio>
+						  <h:commandButton value="Ser mer info om valgt konsert" type="submit"/>
+				</h:form>
+				</p:layoutUnit>
+    			 <p:layoutUnit position="east" resizable="true" size="400" minSize="30" maxSize="300">
+    			 	<h:form id="showInfo">
+    			 		<h2>Mer informasjon</h2>
+				       <h2><p:outputLabel value="#{concertController.input.name}"/></h2> 
+		              Dato: <p:outputLabel value="#{concertController.input.cdate}"/>
+		              Pris: <p:outputLabel value="#{concertController.input.price}"/>
+		              Sted: <p:outputLabel value="#{concertController.input.place}"/>
+		              <br /> <p:outputLabel value="#{concertController.input.description}"/>
+		              Antall ledige billetter: <p:outputLabel value="#{concertController.input.ticketstotal - concertController.input.ticketsSold}"/> 
+		              Antall billetter totalt: <p:outputLabel value="#{concertController.input.ticketstotal}"/>     
+  					</h:form>
+  					</p:layoutUnit>
+  					</p:layout>
+		        	<p:scrollPanel id="panel" mode="native" style="width:400px;height:500px">
+					 <h:form>
+			    		<h2>Reserver billett til konsert</h2>
+			    			 <p:selectOneMenu id="id" value="#{concertController.concertId}">
+							            <f:selectItems value="#{concertController.concerts}" var="concert"
+    									itemLabel="#{concert.name}" itemValue="#{concert.id}"/>
+							        </p:selectOneMenu>
+						<h:outputLabel value="Velg antall billetter: "/>
+				        <h:inputText value="#{concertController.reservedTickets}"/>
+							<h:commandButton value="Reserver billett" type="submit" action="#{concertController.updateTickets()}"/>
+			    	 </h:form>
+			    	 <h2>Søk etter konserter innfor tidsrom</h2>
+			    	 <h:form>
+			    	 	<h:inputText value="#{concertController.concert.cdate}"/>
+		        		<h:inputText value="#{concertController.concert.cdate}"/>
+		        		<h:commandButton value="Se konserter mellom valgte datoer" type="submit" oncomplete="dlg.show()" update=":form2"/>
+			    	 </h:form>
+			    	 </p:scrollPanel>
+			    	 <h1>ADMIN PANEL</h1>
+			    	 <p:layout style="max-width:900px;min-height:700px;">
 				    <p:layoutUnit position="west" resizable="true" size="400" minSize="30" maxSize="300">
 				    	<h:form>
 				    	<h2>Legg til artist</h2>
@@ -67,50 +119,6 @@
 				    	</h:form>
 				    </p:layoutUnit>
 				</p:layout>
-		        </p:tab>
-		        <p:tab title="Konserter">
-		        <h:form>			    
-		        		<h:inputText value="#{concertController.concert.ticketstotal}"/>
-		        		<h:commandButton value="Ser mer info om valgt konsert" type="submit" oncomplete="dlg.show()" update=":form2"/>
-			    		<p:selectOneRadio id="genre" value="#{concertController.concertId}">
-								<f:selectItems value="#{concertController.concerts}" var="concert" 
-								itemLabel="#{concert.name}" itemValue="#{concert.id}"/>
-						 </p:selectOneRadio>
-						  <h:commandButton value="Ser mer info om valgt konsert" type="submit" oncomplete="C.show()"/>
-	
-				         <h2><p:outputLabel value="#{concertController.input.name}"/></h2> 
-		              Dato: <p:outputLabel value="#{concertController.input.cdate}"/>
-		              Pris: <p:outputLabel value="#{concertController.input.price}"/>
-		              Sted: <p:outputLabel value="#{concertController.input.place}"/>
-		              <br /> <p:outputLabel value="#{concertController.input.description}"/>
-		              Antall ledige billetter: <p:outputLabel value="#{concertController.input.ticketsleft}"/>     
-    			 </h:form>
-		        </p:tab>
-		        <p:tab title="Artister">
-					<h2>Artister</h2>
-					 <h:form>
-			    	<h:outputLabel>
-			    		  <p:dataList value="#{artistController.artists}" var="artist" type="ordered">
-				       		 #{artist.name}, #{artist.genre}
-			    		</p:dataList>
-			    	</h:outputLabel>
-			    	 </h:form>
-		        </p:tab>
-		        <p:tab title="Reserver billett">
-		        	<p:scrollPanel mode="native" style="width:400px;height:700px">
-					 <h:form>
-			    		<h2>Reserver billett til konsert</h2>
-			    			 <p:selectOneMenu id="id" value="#{concertController.concertId}">
-							            <f:selectItems value="#{concertController.concerts}" var="concert"
-    									itemLabel="#{concert.name}" itemValue="#{concert.id}"/>
-							        </p:selectOneMenu>
-						<h:outputLabel value="Velg antall billetter: "/>
-				        <h:inputText value="#{concertController.reservedTickets}"/>
-							<h:commandButton value="Reserver billett" type="submit" action="#{concertController.updateTickets()}"/>
-			    	 </h:form>
-			    	 </p:scrollPanel>
-		        </p:tab>
-		    </p:tabView>
  </h:body>
      
 </html>
