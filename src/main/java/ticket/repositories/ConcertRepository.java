@@ -1,5 +1,6 @@
 package ticket.repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -22,7 +23,7 @@ public class ConcertRepository {
 		em.remove(findOne(id));
 	}
 	public void update(Concert concert){
-		em.persist(concert);
+		em.merge(concert);
 	}
 	@SuppressWarnings("unchecked")
 	public List<Concert> findAll(){
@@ -30,5 +31,9 @@ public class ConcertRepository {
 	}
 	public Concert findOne(int id){
 		return em.find(Concert.class, id);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Concert> findByDate(Date start, Date end){
+		return (List<Concert>)	em.createQuery("select c from " + Concert.class.getName() + " c where c.cdate between '"+ start +"' and '" + end +"'").getResultList();	
 	}
 }

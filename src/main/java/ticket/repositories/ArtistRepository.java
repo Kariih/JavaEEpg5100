@@ -32,5 +32,4 @@ public class ArtistRepository {
 	public Artist findOne(int id){
 		return em.find(Artist.class, id);
 	}
- //em.close();
 }

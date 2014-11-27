@@ -1,6 +1,6 @@
 h1
 {
-font-size:50px;
+font-size:60px;
 color: #999999;
 font-family:trebuchet ms;
 }
@@ -19,6 +19,5 @@ font-family:trebuchet ms;
 li, label, .ui-btn
 {
 	background:#FFFFFF !important;
-	font-family:trebuchet ms !important;
-	
+	font-family:trebuchet ms !important;	
 }

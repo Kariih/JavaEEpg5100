@@ -56,15 +56,23 @@
 							            <f:selectItems value="#{concertController.concerts}" var="concert"
     									itemLabel="#{concert.name}" itemValue="#{concert.id}"/>
 							        </p:selectOneMenu>
-						<h:outputLabel value="Velg antall billetter: "/>
-				        <h:inputText value="#{concertController.reservedTickets}"/>
+						<h:outputLabel value="Velg antall billetter(max 5): "/>
+				        <p:selectOneMenu id="genre" value="#{concertController.reservedTickets}">
+							            <f:selectItem itemLabel="1" itemValue="1" />
+							            <f:selectItem itemLabel="2" itemValue="2" />
+							            <f:selectItem itemLabel="3" itemValue="3" />
+							            <f:selectItem itemLabel="4" itemValue="4" />
+							            <f:selectItem itemLabel="5" itemValue="5" />
+							        </p:selectOneMenu>
 							<h:commandButton value="Reserver billett" type="submit" action="#{concertController.updateTickets()}"/>
 			    	 </h:form>
 			    	 <h2>Søk etter konserter innfor tidsrom</h2>
-			    	 <h:form>
-			    	 	<h:inputText value="#{concertController.concert.cdate}"/>
-		        		<h:inputText value="#{concertController.concert.cdate}"/>
-		        		<h:commandButton value="Se konserter mellom valgte datoer" type="submit" oncomplete="dlg.show()" update=":form2"/>
+			    	 <h:form>	
+			    		 <h:outputLabel value="Start dato:"/>
+			    	 	<p:calendar id="dateStart" value="#{concertController.startDate}" />
+			    	 	<h:outputLabel value="Slutt dato:"/>
+		        		<p:calendar id="dateEnd" value="#{concertController.endDate}" />
+		        		<h:commandButton value="Se konserter mellom valgte datoer" type="submit" action="#{concertController.getConcertsByTime()}"/>
 			    	 </h:form>
 			    	 </p:scrollPanel>
 			    	 <h1>ADMIN PANEL</h1>

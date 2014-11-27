@@ -1,6 +1,7 @@
 package ticket.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -26,6 +27,8 @@ public class ConcertController {
 	private int artistId;
 	private int concertId;
 	private int reservedTickets;
+	private Date startDate;
+	private Date endDate;
 	
 	public int getReservedTickets() {
 		return reservedTickets;
@@ -34,11 +37,24 @@ public class ConcertController {
 		this.reservedTickets = reservedTickets;
 	}	
 	public void updateTickets(){
-		this.concert = repository.findOne(concertId);
-		this.concert.setTicketsSold(concert.getTicketsSold() - reservedTickets);
-		repository.update(this.concert);
+		Concert c = repository.findOne(concertId);
+		int ticketsSold = c.getTicketsSold();
+		ticketsSold += reservedTickets;
+		c.setTicketsSold(ticketsSold);
+		repository.update(c);
 	}
-	
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
 	public int getConcertId() {
 		return concertId;
 	}
@@ -64,6 +80,11 @@ public class ConcertController {
 	public List<Concert> getConcerts(){
 		concerts = repository.findAll();
 		return concerts;
+	}
+	public List<Concert> getConcertsByTime(){
+		concerts = repository.findByDate(startDate, endDate);
+		return concerts;
+		
 	}
 
     public Concert getInput(){
