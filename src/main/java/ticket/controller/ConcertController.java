@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
@@ -43,6 +44,10 @@ public class ConcertController {
 		c.setTicketsSold(ticketsSold);
 		repository.update(c);
 	}
+	@PostConstruct
+	public void startup(){
+		concerts = repository.findAll();
+	}
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -73,12 +78,13 @@ public class ConcertController {
 	public void addConcert() {	
 		concert.setArtist(artistRepository.findOne(artistId));
 		repository.add(this.concert);
+		concerts = repository.findAll();
 	}
 	public void deleteConcert(){
 		repository.delete(concertId);
+		concerts = repository.findAll();
 	}
 	public List<Concert> getConcerts(){
-		concerts = repository.findAll();
 		return concerts;
 	}
 	public List<Concert> getConcertsByTime(){
