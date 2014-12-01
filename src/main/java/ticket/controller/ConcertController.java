@@ -1,8 +1,11 @@
 package ticket.controller;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -19,6 +22,7 @@ public class ConcertController {
 	
 	List<Concert> concerts = new ArrayList<Concert>();
 	Concert concert = new Concert();
+	List<String> topFiveConcert = new ArrayList<String>();
 	
 	@Inject
 	private ConcertRepository repository;
@@ -47,6 +51,12 @@ public class ConcertController {
 	@PostConstruct
 	public void startup(){
 		concerts = repository.findAll();
+	}
+	public List<String> getTopFiveConcert() {
+		return topFiveConcert;
+	}
+	public void setTopFiveConcert(List<String> topFiveConcert) {
+		this.topFiveConcert = topFiveConcert;
 	}
 	public Date getEndDate() {
 		return endDate;
@@ -92,7 +102,6 @@ public class ConcertController {
 		return concerts;
 		
 	}
-
     public Concert getInput(){
         return repository.findOne(concertId);
     }
@@ -100,4 +109,36 @@ public class ConcertController {
 	public void setInput(int id) {
         this.concertId = id;
     }
+	@SuppressWarnings("null")
+	public List<String> makeReport(){
+		Map<String, Double> sortConcerts = null;
+		double percent;
+		for (Concert c : concerts) {
+			if(c.getTicketsSold()!= 0){
+				percent = c.getTicketstotal() / c.getTicketsSold();
+				sortConcerts.put(c.getName(), percent);
+			}
+		}
+		Map<String, Double>sortedConcerts = new HashMap<String, Double>();
+		new Comparator<Double>() {
+
+			@Override
+			public int compare(Double o1, Double o2) {
+				return o1.compareTo(o2);
+			}
+		};
+		sortedConcerts.putAll(sortConcerts);
+		int count = 0;
+		for (Map.Entry<String, Double> e: sortedConcerts.entrySet()) {
+			topFiveConcert.add(e.getKey());
+			count++;
+			if(count == 5){
+				break;
+			}
+		}
+		
+		
+		return topFiveConcert;
+	}
+
 }

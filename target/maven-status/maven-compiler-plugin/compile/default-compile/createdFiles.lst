@@ -1,6 +1,7 @@
 ticket/controller/ConcertController.class
 ticket/repositories/ArtistRepository.class
 ticket/model/Artist.class
+ticket/controller/ConcertController$1.class
 ticket/model/Concert.class
 ticket/repositories/ConcertRepository.class
 ticket/controller/ArtistController.class
