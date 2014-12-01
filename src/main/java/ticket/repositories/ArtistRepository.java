@@ -3,13 +3,14 @@ package ticket.repositories;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import logg.Logger;
 import ticket.model.Artist;
 
-
-
+@Interceptors(Logger.class)
 @Stateless
 public class ArtistRepository {
 

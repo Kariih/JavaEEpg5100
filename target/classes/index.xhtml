@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pm="http://primefaces.org/mobile">
+     
+    <f:view renderKitId="PRIMEFACES_MOBILE" />
+     
+    <h:head>
+    </h:head>
+     
+    <h:body>
+    	<h:outputStylesheet name="css/style.css" />
+    <p:messages id="msgs" showDetail="true"/>
+				<h1>KONSERTER OG ARTISTER</h1>
+				<p:layout style="max-width:900px;min-height:500px;">
+				<p:layoutUnit position="west" resizable="true" size="400" minSize="30" maxSize="300">
+			<h2>Artister</h2>
+					 <h:form>
+			    	<h:outputLabel>
+			    		  <p:dataList value="#{artistController.artists}" var="artist" type="ordered">
+				       		 #{artist.name}, #{artist.genre}
+			    		</p:dataList>
+			    	</h:outputLabel>
+			    	 </h:form>
+				</p:layoutUnit>
+				<p:layoutUnit position="center">
+				<h2>Konserter</h2>
+						        <h:form>			    
+		        		
+			    		<p:selectOneRadio id="consert" value="#{concertController.concertId}">
+								<f:selectItems value="#{concertController.concerts}" var="concert" 
+								itemLabel="#{concert.name}" itemValue="#{concert.id}"/>
+						 </p:selectOneRadio>
+						  <h:commandButton value="Ser mer info om valgt konsert" type="submit"/>
+				</h:form>
+				</p:layoutUnit>
+    			 <p:layoutUnit position="east" resizable="true" size="400" minSize="30" maxSize="300">
+    			 	<h:form id="showInfo">
+    			 		<h2>Mer informasjon</h2>
+				       <h2><p:outputLabel value="#{concertController.input.name}"/></h2> 
+		              Dato: <p:outputLabel value="#{concertController.input.cdate}"/>
+		              Pris: <p:outputLabel value="#{concertController.input.price}"/>
+		              Sted: <p:outputLabel value="#{concertController.input.place}"/>
+		              <br /> <p:outputLabel value="#{concertController.input.description}"/>
+		              <br />
+		              <br/>
+		              Antall ledige billetter: <p:outputLabel value="#{concertController.input.ticketstotal - concertController.input.ticketsSold}"/> 
+		              Antall billetter totalt: <p:outputLabel value="#{concertController.input.ticketstotal}"/>     
+  					</h:form>
+  					</p:layoutUnit>
+  					</p:layout>
+		        	<p:scrollPanel id="panel" mode="native" style="width:400px;height:500px">
+					 <h:form>
+			    		<h2>Reserver billett til konsert</h2>
+			    			 <p:selectOneMenu id="id" value="#{concertController.concertId}">
+							            <f:selectItems value="#{concertController.concerts}" var="concert"
+    									itemLabel="#{concert.name}" itemValue="#{concert.id}"/>
+							        </p:selectOneMenu>
+						<h:outputLabel value="Velg antall billetter(max 5): "/>
+				        <p:selectOneMenu id="genre" value="#{concertController.reservedTickets}">
+							            <f:selectItem itemLabel="1" itemValue="1" />
+							            <f:selectItem itemLabel="2" itemValue="2" />
+							            <f:selectItem itemLabel="3" itemValue="3" />
+							            <f:selectItem itemLabel="4" itemValue="4" />
+							            <f:selectItem itemLabel="5" itemValue="5" />
+							        </p:selectOneMenu>
+							<h:commandButton value="Reserver billett" type="submit" action="#{concertController.updateTickets()}"/>
+			    	 </h:form>
+			    	 <h2>Søk etter konserter innfor tidsrom</h2>
+			    	 <h:form>	
+			    		 <h:outputLabel value="Start dato:"/>
+			    	 	<p:calendar id="dateStart" value="#{concertController.startDate}" />
+			    	 	<h:outputLabel value="Slutt dato:"/>
+		        		<p:calendar id="dateEnd" value="#{concertController.endDate}" />
+		        		<h:commandButton value="Se konserter mellom valgte datoer" type="submit" action="#{concertController.getConcertsByTime()}"/>
+			    	 </h:form>
+			    	 </p:scrollPanel>
+			    	 <h1>ADMIN PANEL</h1>
+			    	 <p:layout style="max-width:900px;min-height:700px;">
+				    <p:layoutUnit position="west" resizable="true" size="400" minSize="30" maxSize="300">
+				    	<h:form>
+				    	<h2>Legg til artist</h2>
+				        <h:outputLabel value="Name: "/>
+							        <h:inputText value="#{artistController.artist.name}"/>
+							        <h:outputLabel value="Genre: "/>
+							        <p:selectOneRadio id="genre" value="#{artistController.artist.genre}">
+							            <f:selectItem itemLabel="Hard Rock" itemValue="Hard Rock" />
+							            <f:selectItem itemLabel="Pop" itemValue="Pop" />
+							            <f:selectItem itemLabel="Country" itemValue="Country" />
+							            <f:selectItem itemLabel="Blues" itemValue="Blues" />
+							        </p:selectOneRadio>
+							        <h:commandButton value="Save" type="submit" action="#{artistController.addArtist()}"/>
+						</h:form>
+				    </p:layoutUnit>
+				    <p:layoutUnit position="center">
+				        <h:form>
+				        <h2>Legg til konsert</h2>
+	        			<h:outputLabel value="Tittel: "/>
+				    	<h:inputText value="#{concertController.concert.name}"/>
+				        <h:outputLabel value="Dato:"/>
+				        <p:calendar id="date" value="#{concertController.concert.cdate}" />
+				        <h:outputLabel value="Price: "/>
+				        <h:inputText value="#{concertController.concert.price}"/>
+				        <h:outputLabel value="Place: "/>
+				        <h:inputText value="#{concertController.concert.place}"/>
+				        <h:outputLabel value="Beskrivelse: "/>
+				        <h:inputText value="#{concertController.concert.description}"/>
+				        <h:outputLabel value="Totalt antall billetter: "/>
+				        <h:inputText value="#{concertController.concert.ticketstotal}"/>
+				        <h:outputLabel value="Artist: "/>
+						<h:selectOneMenu value="#{concertController.artistId}">
+							<f:selectItems value="#{artistController.artists}"
+										   var="artist" itemLabel="#{artist.name}"
+										   itemValue="#{artist.id}"/>
+						</h:selectOneMenu>
+				         <h:commandButton value="Save" type="submit" action="#{concertController.addConcert()}"/>
+				         </h:form>
+				    </p:layoutUnit>
+				    <p:layoutUnit position="east" resizable="true" size="300" minSize="30" maxSize="300">
+				    	<h:form>
+				    	<h2>Slett konsert</h2>
+									<p:selectOneMenu value="#{concertController.concertId}">
+							            <f:selectItems value="#{concertController.concerts}" var="concert"
+    									itemLabel="#{concert.name}"  itemValue="#{concert.id}"/>
+							        </p:selectOneMenu>
+					        <h:commandButton value="Slett" type="submit" action="#{concertController.deleteConcert()}"/>
+				    	</h:form>
+				    </p:layoutUnit>
+				</p:layout>
+				<p:scrollPanel id="panel2" mode="native" style="width:400px;height:500px">
+					 <h:form>
+						<h:commandButton value="Se rapport" type="submit" action="#{concertController.makeReport}"/>
+					 	<h:dataTable border="1" value="#{concertController.topFiveConcert}" var="topFive">
+							#{topFive}
+						</h:dataTable>
+					 </h:form>
+				</p:scrollPanel>
+ </h:body>
+     
+</html>

@@ -4,12 +4,15 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TemporalType;
 
+import logg.Logger;
 import ticket.model.Concert;
 
+@Interceptors(Logger.class)
 @Stateless
 public class ConcertRepository {
 	
