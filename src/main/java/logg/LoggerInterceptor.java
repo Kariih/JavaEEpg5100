@@ -1,8 +1,12 @@
 package logg;
 
+
+
 import javax.interceptor.AroundInvoke;
+
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+
 import javax.interceptor.InvocationContext;
 public class LoggerInterceptor {
 	static final Logger LOG = LoggerFactory.getLogger(LoggerInterceptor.class);
@@ -16,7 +20,7 @@ public class LoggerInterceptor {
     	        buff = new StringBuffer();
     	        buff.append(param.toString());
     	    }else{
-    	        buff.append("; ").append((String)param);
+    	        buff.append("; ").append(param.toString());
     	    }
     	}
     	LOG.info("Kaller metode: " + context.getMethod() + " Input: " + (buff != null ? buff.toString() : ""));

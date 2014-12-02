@@ -51,7 +51,7 @@
   					</h:form>
   					</p:layoutUnit>
   					</p:layout>
-		        	<p:scrollPanel id="panel" mode="native" style="width:300px;height:500px;margin-top:200px;">
+		        	<p:scrollPanel id="panel" mode="native" style="width:300px;height:600px;margin-top:200px;">
 					 <h:form>
 			    		<h2>Reserver billett til konsert</h2>
 			    			 <p:selectOneMenu id="id" value="#{concertController.concertId}">
@@ -75,6 +75,7 @@
 			    	 	<h:outputLabel value="Slutt dato:"/>
 		        		<p:calendar id="dateEnd" value="#{concertController.endDate}" />
 		        		<h:commandButton value="Se konserter mellom valgte datoer" type="submit" action="#{concertController.getConcertsByTime()}"/>
+		        		<h:outputLabel class="error" value="#{concertController.errorDate}"/>
 			    	 </h:form>
 			    	 </p:scrollPanel>
 			    	 <h1>ADMIN PANEL</h1>
@@ -92,6 +93,7 @@
 							            <f:selectItem itemLabel="Blues" itemValue="Blues" />
 							        </p:selectOneRadio>
 							        <h:commandButton value="Save" type="submit" action="#{artistController.addArtist()}"/>
+							        <h:outputLabel class="error" value="#{artistController.errorArtist}"/>
 						</h:form>
 				    </p:layoutUnit>
 				    <p:layoutUnit position="center">
@@ -116,6 +118,7 @@
 										   itemValue="#{artist.id}"/>
 						</h:selectOneMenu>
 				         <h:commandButton value="Save" type="submit" action="#{concertController.addConcert()}"/>
+				         <h:outputLabel class="error" value="#{concertController.errorConcert}"/>
 				         </h:form>
 				    </p:layoutUnit>
 				    <p:layoutUnit position="east" resizable="true" size="300" minSize="30" maxSize="300">

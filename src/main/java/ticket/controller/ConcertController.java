@@ -34,7 +34,25 @@ public class ConcertController {
 	private int reservedTickets;
 	private Date startDate;
 	private Date endDate;
+	private String errorConcert;
+	private String errorDate;
 	
+	@PostConstruct
+	public void startup(){
+		concerts = repository.findAll();
+	}
+	public String getErrorConcert() {
+		return errorConcert;
+	}
+	public void setErrorConcert(String errorConcert) {
+		this.errorConcert = errorConcert;
+	}
+	public String getErrorDate() {
+		return errorDate;
+	}
+	public void setErrorDate(String errorDate) {
+		this.errorDate = errorDate;
+	}
 	public int getReservedTickets() {
 		return reservedTickets;
 	}
@@ -49,10 +67,6 @@ public class ConcertController {
 		c.setTicketsSold(ticketsSold);
 		repository.update(c);
 	}
-	@PostConstruct
-	public void startup(){
-		concerts = repository.findAll();
-	}
 	public List<String> getTopFiveConcert() {
 		return topFiveConcert;
 	}
@@ -60,13 +74,13 @@ public class ConcertController {
 		this.topFiveConcert = topFiveConcert;
 	}
 	public Date getEndDate() {
-		return endDate;
+		return (Date)endDate;
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public Date getStartDate() {
-		return startDate;
+		return (Date)startDate;
 	}
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
@@ -87,9 +101,13 @@ public class ConcertController {
 		return concert;
 	}
 	public void addConcert() {	
-		concert.setArtist(artistRepository.findOne(artistId));
-		repository.add(this.concert);
-		concerts = repository.findAll();
+		if(checkAddConcert() == 1){
+			concert.setArtist(artistRepository.findOne(artistId));
+			repository.add(this.concert);
+		}else{
+			concerts = repository.findAll();
+			errorConcert = "Et eller flere felt er feil utfylt";
+		}
 	}
 	public void deleteConcert(){
 		repository.delete(concertId);
@@ -99,8 +117,13 @@ public class ConcertController {
 		return concerts;
 	}
 	public List<Concert> getConcertsByTime(){
-		concerts = repository.findByDate(startDate, endDate);
-		return concerts;
+		if(checkDates() == 1){
+			concerts = repository.findByDate((Date)getStartDate(), (Date)getStartDate());
+			return concerts;
+		}else{
+			errorDate = "Fyll in to datoer";
+			return null;
+		}
 		
 	}
     public Concert getInput(){
@@ -129,6 +152,46 @@ public class ConcertController {
 		}
 		
 		return topFiveConcert;
+	}
+	private int checkAddConcert(){
+		int checkPassed = 0;
+		if(concert.getName() != null){
+			checkPassed++;
+		}
+		if(concert.getCdate() != null){
+			checkPassed++;
+		}
+		if(concert.getPrice() >= 1){
+			checkPassed++;
+		}
+		if(concert.getPlace() != null){
+			checkPassed++;
+		}
+		if(concert.getDescription() != null){
+			checkPassed++;
+		}
+		if(concert.getTicketstotal() >= 1){
+			checkPassed++;
+		}
+		if(checkPassed == 6){
+			errorConcert = "";
+			return 1;
+		}
+		return 0;
+	}
+	private int checkDates(){
+		int checkPassed = 0;
+		if(getStartDate() != null){
+			checkPassed++;
+		}
+		if(getEndDate() != null){
+			checkPassed++;
+		}
+		if(checkPassed == 2){
+			errorDate = "";
+			return 1;
+		}
+		return 0;
 	}
 
 }
