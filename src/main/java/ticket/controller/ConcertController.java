@@ -111,19 +111,17 @@ public class ConcertController {
         this.concertId = id;
     }
 	public List<String> makeReport(){
-		Map<String, Double> sortConcerts = new TreeMap<>();
+		Map<Double, String> sortConcerts = new TreeMap<>(Collections.reverseOrder());
 		double percent;
 		for (Concert c : concerts) {
 			if(c.getTicketsSold()!= 0){
 				percent = ((double)c.getTicketsSold() / (double)c.getTicketstotal())*100;
-				sortConcerts.put(c.getName(), percent);
+				sortConcerts.put(percent,c.getName());
 			}
 		}
-		Map<String, Double>sortedConcerts = new TreeMap<String, Double>(Collections.reverseOrder());	
-		sortedConcerts.putAll(sortConcerts);
 		int count = 0;
-		for (Map.Entry<String, Double> e: sortedConcerts.entrySet()) {
-			topFiveConcert.add(count + 1+ ": "+ e.getKey() + " Solgt: " + e.getValue() + "%");
+		for (Map.Entry<Double, String> e: sortConcerts.entrySet()) {
+			topFiveConcert.add(count + 1 + ": "+ e.getKey() + " Solgt: " + e.getValue() + "%");
 			count++;
 			if(count == 5){
 				break;

@@ -2,7 +2,6 @@ ticket/controller/ConcertController.class
 ticket/repositories/ArtistRepository.class
 ticket/model/Artist.class
 ticket/model/Concert.class
-ticket/controller/ConcertController$ValueComp.class
 ticket/repositories/ConcertRepository.class
 ticket/controller/ArtistController.class
 logg/LoggerInterceptor.class
