@@ -9,10 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TemporalType;
 
-import logg.Logger;
+import logg.LoggerInterceptor;
 import ticket.model.Concert;
 
-@Interceptors(Logger.class)
+@Interceptors(LoggerInterceptor.class)
 @Stateless
 public class ConcertRepository {
 	

@@ -131,10 +131,10 @@
 				</p:layout>
 				<p:scrollPanel id="panel2" mode="native" style="width:400px;height:500px">
 					 <h:form>
-						<h:commandButton value="Se rapport" type="submit" action="#{concertController.makeReport}"/>
-					 	<h:dataTable border="1" value="#{concertController.topFiveConcert}" var="topFive">
+						<h:commandButton value="Se rapport" type="submit" action="#{concertController.makeReport()}"/>
+					 	<p:dataList border="1" value="#{concertController.topFiveConcert}" var="topFive">
 							#{topFive}
-						</h:dataTable>
+						</p:dataList>
 					 </h:form>
 				</p:scrollPanel>
  </h:body>

@@ -7,10 +7,10 @@ import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import logg.Logger;
+import logg.LoggerInterceptor;
 import ticket.model.Artist;
 
-@Interceptors(Logger.class)
+@Interceptors(LoggerInterceptor.class)
 @Stateless
 public class ArtistRepository {
 

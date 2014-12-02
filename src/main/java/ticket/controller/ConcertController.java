@@ -1,11 +1,11 @@
 package ticket.controller;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -40,6 +40,7 @@ public class ConcertController {
 	}
 	public void setReservedTickets(int reservedTickets) {
 		this.reservedTickets = reservedTickets;
+		topFiveConcert = null;
 	}	
 	public void updateTickets(){
 		Concert c = repository.findOne(concertId);
@@ -109,28 +110,20 @@ public class ConcertController {
 	public void setInput(int id) {
         this.concertId = id;
     }
-	@SuppressWarnings("null")
 	public List<String> makeReport(){
-		Map<String, Double> sortConcerts = null;
+		Map<String, Double> sortConcerts = new TreeMap<>();
 		double percent;
 		for (Concert c : concerts) {
 			if(c.getTicketsSold()!= 0){
-				percent = c.getTicketstotal() / c.getTicketsSold();
+				percent = ((double)c.getTicketsSold() / (double)c.getTicketstotal())*100;
 				sortConcerts.put(c.getName(), percent);
 			}
 		}
-		Map<String, Double>sortedConcerts = new HashMap<String, Double>();
-		new Comparator<Double>() {
-
-			@Override
-			public int compare(Double o1, Double o2) {
-				return o1.compareTo(o2);
-			}
-		};
+		Map<String, Double>sortedConcerts = new TreeMap<String, Double>(Collections.reverseOrder());	
 		sortedConcerts.putAll(sortConcerts);
 		int count = 0;
 		for (Map.Entry<String, Double> e: sortedConcerts.entrySet()) {
-			topFiveConcert.add(e.getKey());
+			topFiveConcert.add(count + 1+ ": "+ e.getKey() + " Solgt: " + e.getValue() + "%");
 			count++;
 			if(count == 5){
 				break;
