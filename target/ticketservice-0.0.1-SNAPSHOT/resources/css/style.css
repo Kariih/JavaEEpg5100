@@ -10,13 +10,7 @@ font-size:20px;
 color: #95BA70;
 font-family:trebuchet ms;
 }
-#panel
-{
-	position:absolute;
-	right:300px;
-	top:140px;
-}
-li, label, .ui-btn
+li, .ui-btn
 {
 	background:#FFFFFF !important;
 	font-family:trebuchet ms !important;	

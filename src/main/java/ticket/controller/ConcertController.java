@@ -121,13 +121,12 @@ public class ConcertController {
 		}
 		int count = 0;
 		for (Map.Entry<Double, String> e: sortConcerts.entrySet()) {
-			topFiveConcert.add(count + 1 + ": "+ e.getKey() + " Solgt: " + e.getValue() + "%");
+			topFiveConcert.add(count + 1 + ": "+ e.getValue());
 			count++;
 			if(count == 5){
 				break;
 			}
 		}
-		
 		
 		return topFiveConcert;
 	}
