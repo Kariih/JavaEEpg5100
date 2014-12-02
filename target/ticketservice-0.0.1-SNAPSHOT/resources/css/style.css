@@ -15,3 +15,8 @@ li, .ui-btn
 	background:#FFFFFF !important;
 	font-family:trebuchet ms !important;	
 }
+#panel{
+	position:absolute;
+	left: 905px;
+	top:0px;
+}
