@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.constraints.Future;
 
 import ticket.model.Concert;
 import ticket.repositories.ArtistRepository;
@@ -41,7 +42,9 @@ public class ConcertController {
 	private int artistId;
 	private int concertId;
 	private int reservedTickets;
+	@Future
 	private Date startDate;
+	@Future
 	private Date endDate;
 	private String errorConcert;
 	private String errorDate;

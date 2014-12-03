@@ -3,6 +3,10 @@ package ticket.model;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 /*
@@ -16,15 +20,23 @@ public class Concert {
 	@GeneratedValue(generator="incrementorC")
 	private int id;
 	private String name;
+	@Future
 	@Temporal(TemporalType.DATE)
 	private Date cdate;
 	@ManyToOne
 	@JoinColumn(name = "ARTIST_ID")
 	private Artist artist;
+	@Min(1)
+	@Max(10000)
 	private int price;
 	private String place;
+	@Size(min=10, max=1000)
 	private String description;
+	@Min(1)
+	@Max(100000)
 	private int ticketstotal;
+	@Min(1)
+	@Max(100000)
 	private int ticketsSold;
 
 	public Concert(Date cdate, Artist artist, int price,
