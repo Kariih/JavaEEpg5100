@@ -5,7 +5,9 @@ import java.util.Date;
 import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/*
+ * Entity for concert
+ */
 @Entity
 public class Concert {
 	

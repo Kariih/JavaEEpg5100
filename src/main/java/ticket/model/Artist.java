@@ -6,6 +6,9 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/*
+ * Entity for Artist
+ */
 @Entity
 public class Artist {
 	@GenericGenerator(name="incrementor" , strategy="increment")

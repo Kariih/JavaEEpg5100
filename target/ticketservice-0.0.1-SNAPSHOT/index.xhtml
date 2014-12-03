@@ -67,6 +67,7 @@
 							            <f:selectItem itemLabel="5" itemValue="5" />
 							        </p:selectOneMenu>
 							<h:commandButton value="Reserver billett" type="submit" action="#{concertController.updateTickets()}"/>
+							<h:outputLabel class="error" value="#{concertController.enoughTickets}"/>
 			    	 </h:form>
 			    	 <h2>Søk etter konserter innfor tidsrom</h2>
 			    	 <h:form>	
@@ -134,7 +135,7 @@
 				</p:layout>
 				<p:scrollPanel id="panel2" mode="native" style="width:400px;height:500px">
 					 <h:form>
-						<h:commandButton value="Se rapport" type="submit" action="#{concertController.makeReport()}"/>
+						<h:commandButton value="Se rapport(Top 5 konserter)" type="submit" action="#{concertController.makeReport()}"/>
 					 	<p:dataList border="1" value="#{concertController.topFiveConcert}" var="topFive">
 							#{topFive}
 						</p:dataList>

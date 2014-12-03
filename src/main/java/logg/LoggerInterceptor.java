@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import javax.interceptor.InvocationContext;
+
+/*
+ * Logging parameters, methods and error which is used in the reposetory classes
+ */
 public class LoggerInterceptor {
 	static final Logger LOG = LoggerFactory.getLogger(LoggerInterceptor.class);
 	

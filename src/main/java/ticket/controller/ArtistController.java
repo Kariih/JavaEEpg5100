@@ -10,11 +10,21 @@ import javax.inject.Inject;
 import ticket.model.Artist;
 import ticket.repositories.ArtistRepository;
 
+/*
+ * Class for controlling the functionality representing artists.
+ */
+
 @ManagedBean
 @RequestScoped
 public class ArtistController {
 	
+	/*
+	 * List of artists from database
+	 */
 	List<Artist> artists = new ArrayList<Artist>();
+	/*
+	 * Error message if something fails
+	 */
 	private String errorArtist;
 
 	@Inject
@@ -29,7 +39,7 @@ public class ArtistController {
 		if(checkArtist() == 1){
 			repository.add(this.artist);
 		}else{
-			errorArtist = "Felt uriktig fylt ut";
+			errorArtist = "Et eller flere felt er feil utfylt";
 		}
 	}
 	public List<Artist> getArtists(){
@@ -43,6 +53,9 @@ public class ArtistController {
 	public void setErrorArtist(String errorArtist) {
 		this.errorArtist = errorArtist;
 	}
+	/*
+	 * Check if all information needed is provided.
+	 */
 	private int checkArtist(){
 		int checkPassed = 0;
 		if(artist.getName() != ""){

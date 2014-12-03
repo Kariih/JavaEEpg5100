@@ -20,8 +20,17 @@ import ticket.repositories.ConcertRepository;
 @RequestScoped
 public class ConcertController {
 	
+	/*
+	 * List of concerts from database
+	 */
 	List<Concert> concerts = new ArrayList<Concert>();
+	/*
+	 * A spesific concert
+	 */
 	Concert concert = new Concert();
+	/*
+	 * List of top 5 concerts based on % sold tickes of total amout tickets
+	 */
 	List<String> topFiveConcert = new ArrayList<String>();
 	
 	@Inject
@@ -36,7 +45,10 @@ public class ConcertController {
 	private Date endDate;
 	private String errorConcert;
 	private String errorDate;
-	
+	private String enoughTickets;
+	/*
+	 * Generate the list of concerts.
+	 */
 	@PostConstruct
 	public void startup(){
 		concerts = repository.findAll();
@@ -60,12 +72,17 @@ public class ConcertController {
 		this.reservedTickets = reservedTickets;
 		topFiveConcert = null;
 	}	
+	//update the amout of tickets left
 	public void updateTickets(){
 		Concert c = repository.findOne(concertId);
 		int ticketsSold = c.getTicketsSold();
-		ticketsSold += reservedTickets;
-		c.setTicketsSold(ticketsSold);
-		repository.update(c);
+		if((ticketsSold + reservedTickets) > c.getTicketstotal()){
+			enoughTickets ="Ikke nok billetter igjen: UTSOLGT!";
+		}else{
+			ticketsSold += reservedTickets;
+			c.setTicketsSold(ticketsSold);
+			repository.update(c);
+		}
 	}
 	public List<String> getTopFiveConcert() {
 		return topFiveConcert;
@@ -100,15 +117,27 @@ public class ConcertController {
 	public Concert getConcert() {
 		return concert;
 	}
+	public String getEnoughTickets() {
+		return enoughTickets;
+	}
+	public void setEnoughTickets(String enoughTickets) {
+		this.enoughTickets = enoughTickets;
+	}
+	/*
+	 * Add a concert if all information needed is provide.
+	 */
 	public void addConcert() {	
 		if(checkAddConcert() == 1){
 			concert.setArtist(artistRepository.findOne(artistId));
 			repository.add(this.concert);
-		}else{
 			concerts = repository.findAll();
+		}else{
 			errorConcert = "Et eller flere felt er feil utfylt";
 		}
 	}
+	/*
+	 * delete an existing concert
+	 */
 	public void deleteConcert(){
 		repository.delete(concertId);
 		concerts = repository.findAll();
@@ -116,6 +145,9 @@ public class ConcertController {
 	public List<Concert> getConcerts(){
 		return concerts;
 	}
+	/*
+	 * Get the list of concerts by timesearch
+	 */
 	public List<Concert> getConcertsByTime(){
 		if(checkDates() == 1){
 			concerts = repository.findByDate((Date)getStartDate(), (Date)getStartDate());
@@ -133,6 +165,9 @@ public class ConcertController {
 	public void setInput(int id) {
         this.concertId = id;
     }
+	/*
+	 * make the top 5 concerts reports
+	 */
 	public List<String> makeReport(){
 		Map<Double, String> sortConcerts = new TreeMap<>(Collections.reverseOrder());
 		double percent;
@@ -153,6 +188,9 @@ public class ConcertController {
 		
 		return topFiveConcert;
 	}
+	/*
+	 * Check if all information needed is provided for adding a concert.
+	 */
 	private int checkAddConcert(){
 		int checkPassed = 0;
 		if(concert.getName() != null){
@@ -179,6 +217,9 @@ public class ConcertController {
 		}
 		return 0;
 	}
+	/*
+	 * Check if all information needed is provided for searching by dates.
+	 */
 	private int checkDates(){
 		int checkPassed = 0;
 		if(getStartDate() != null){
