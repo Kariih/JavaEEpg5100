@@ -75,7 +75,9 @@ public class ConcertController {
 		this.reservedTickets = reservedTickets;
 		topFiveConcert = null;
 	}	
-	//update the amout of tickets left
+	/*
+	 * update the amount of tickets left
+	 */
 	public void updateTickets(){
 		Concert c = repository.findOne(concertId);
 		int ticketsSold = c.getTicketsSold();
@@ -125,6 +127,12 @@ public class ConcertController {
 	}
 	public void setEnoughTickets(String enoughTickets) {
 		this.enoughTickets = enoughTickets;
+	}
+	public void setConcertRepository(ConcertRepository repo) {
+		this.repository = repo;
+	}
+	public void setArtistRepository(ArtistRepository repo) {
+		this.artistRepository = repo;
 	}
 	/*
 	 * Add a concert if all information needed is provide.

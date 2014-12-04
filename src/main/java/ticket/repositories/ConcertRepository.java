@@ -28,7 +28,6 @@ public class ConcertRepository {
 	 * Add Concert to database
 	 */
 	public void add(Concert concert){
-		System.out.println(concert);
 		em.persist(concert);
 	}
 	/*

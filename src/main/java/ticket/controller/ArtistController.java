@@ -29,7 +29,15 @@ public class ArtistController {
 
 	@Inject
 	private ArtistRepository repository;
-	Artist artist = new Artist();
+	Artist artist;
+	
+	public ArtistController() {
+		setArtist(new Artist());
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
 	
 	public Artist getArtist() {
 		return artist;
