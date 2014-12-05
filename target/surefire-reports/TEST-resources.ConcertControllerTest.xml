@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="resources.ConcertControllerTest" time="0.187" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="resources.ConcertControllerTest" time="0.005" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib"/>
@@ -61,5 +61,12 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="resources.ConcertControllerTest" name="testAddConcert" time="0.187"/>
+  <testcase classname="resources.ConcertControllerTest" name="testStartupFindAll" time="0.001"/>
+  <testcase classname="resources.ConcertControllerTest" name="updateTicketsIsUpdated" time="0.001"/>
+  <testcase classname="resources.ConcertControllerTest" name="testFindConcertByTimeIsNotFound" time="0"/>
+  <testcase classname="resources.ConcertControllerTest" name="testDeleteConcertIsDeleted" time="0.001"/>
+  <testcase classname="resources.ConcertControllerTest" name="testAddConcertIsStored" time="0"/>
+  <testcase classname="resources.ConcertControllerTest" name="updateTicketsIsNotUpdated" time="0.001"/>
+  <testcase classname="resources.ConcertControllerTest" name="testAddConcertIsNotStored" time="0.001"/>
+  <testcase classname="resources.ConcertControllerTest" name="testFindConcertByTimeIsFound" time="0"/>
 </testsuite>

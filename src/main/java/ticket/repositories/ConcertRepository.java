@@ -21,9 +21,6 @@ public class ConcertRepository {
 	@PersistenceContext(unitName = "concertunit")
 	private EntityManager em;
 	
-	public EntityManager getEm() {
-		return em;
-	}
 	/*
 	 * Add Concert to database
 	 */
@@ -49,6 +46,9 @@ public class ConcertRepository {
 	public List<Concert> findAll(){
 	 return (List<Concert>)	em.createQuery("select c from " + Concert.class.getName() + " c").getResultList();	
 	}
+	/*
+	 * Find one concert
+	 */
 	public Concert findOne(int id){
 		return em.find(Concert.class, id);
 	}	

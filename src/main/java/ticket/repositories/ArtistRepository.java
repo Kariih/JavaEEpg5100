@@ -37,6 +37,9 @@ public class ArtistRepository {
 	public List<Artist> findAll(){
 	 return (List<Artist>)	em.createQuery("select a from " + Artist.class.getName() + " a").getResultList();	
 	}
+	/*
+	 * Find one object in i databasen
+	 */
 	public Artist findOne(int id){
 		return em.find(Artist.class, id);
 	}

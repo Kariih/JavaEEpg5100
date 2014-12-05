@@ -30,12 +30,12 @@ public class Concert {
 	@Max(10000)
 	private int price;
 	private String place;
-	@Size(min=10, max=1000)
+	@Size(min=1, max=1000)
 	private String description;
 	@Min(1)
 	@Max(100000)
 	private int ticketstotal;
-	@Min(1)
+	@Min(0)
 	@Max(100000)
 	private int ticketsSold;
 

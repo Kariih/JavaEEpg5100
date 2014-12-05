@@ -1,1 +1,4 @@
+resources/ConcertRepoTest.class
+resources/ArtistControllerTest.class
+resources/ArtistRepoTest.class
 resources/ConcertControllerTest.class

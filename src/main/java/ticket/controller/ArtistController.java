@@ -34,15 +34,18 @@ public class ArtistController {
 	public ArtistController() {
 		setArtist(new Artist());
 	}
-
 	public void setArtist(Artist artist) {
 		this.artist = artist;
-	}
-	
+	}	
 	public Artist getArtist() {
 		return artist;
 	}
-
+	public String getErrorArtist() {
+		return errorArtist;
+	}
+	public void setErrorArtist(String errorArtist) {
+		this.errorArtist = errorArtist;
+	}
 	public void addArtist() {
 		if(checkArtist() == 1){
 			repository.add(this.artist);
@@ -54,19 +57,12 @@ public class ArtistController {
 		artists = repository.findAll();
 		return artists;
 	}
-	public String getErrorArtist() {
-		return errorArtist;
-	}
-
-	public void setErrorArtist(String errorArtist) {
-		this.errorArtist = errorArtist;
-	}
 	/*
 	 * Check if all information needed is provided.
 	 */
 	private int checkArtist(){
 		int checkPassed = 0;
-		if(artist.getName() != ""){
+		if(artist.getName().length() > 2){
 			checkPassed++;
 		}
 		if(artist.getGenre() != ""){

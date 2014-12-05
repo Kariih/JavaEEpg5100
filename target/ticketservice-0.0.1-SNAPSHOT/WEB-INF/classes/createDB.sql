@@ -13,6 +13,6 @@ INSERT INTO ARTIST VALUES(6, 'Willie Nelson', 'Country');
 INSERT INTO ARTIST VALUES(7, 'Brad Paisley', 'Country');
 INSERT INTO ARTIST VALUES(8, 'Epica', 'Hard Rock');
 
-INSERT INTO CONCERT VALUES(1, 'Idol UK vinner', '2014-11-24', 100, 'Rockefeller', 'Nytt album ute, hør de nye sangene nå', 400, 0, 1);
+INSERT INTO CONCERT VALUES(1, 'Idol UK vinner', '2015-01-24', 100, 'Rockefeller', 'Nytt album ute, hør de nye sangene nå', 400, 0, 1);
 INSERT INTO CONCERT VALUES(2, 'Sia kommer til Norge','2015-02-03', 150, 'Oslo spektrum', 'World tour 2015', 1000, 400, 4);
 INSERT INTO CONCERT VALUES(3, 'Rock and dont stop tour','2015-04-30', 300, 'Oslo spektrum', 'Vi er så heldige å få besøk av en verdenskjent stjerne', 700, 30, 8);

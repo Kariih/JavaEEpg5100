@@ -75,20 +75,6 @@ public class ConcertController {
 		this.reservedTickets = reservedTickets;
 		topFiveConcert = null;
 	}	
-	/*
-	 * update the amount of tickets left
-	 */
-	public void updateTickets(){
-		Concert c = repository.findOne(concertId);
-		int ticketsSold = c.getTicketsSold();
-		if((ticketsSold + reservedTickets) > c.getTicketstotal()){
-			enoughTickets ="Ikke nok billetter igjen: UTSOLGT!";
-		}else{
-			ticketsSold += reservedTickets;
-			c.setTicketsSold(ticketsSold);
-			repository.update(c);
-		}
-	}
 	public List<String> getTopFiveConcert() {
 		return topFiveConcert;
 	}
@@ -128,12 +114,28 @@ public class ConcertController {
 	public void setEnoughTickets(String enoughTickets) {
 		this.enoughTickets = enoughTickets;
 	}
-	public void setConcertRepository(ConcertRepository repo) {
-		this.repository = repo;
+	public Concert getInput(){
+        return repository.findOne(concertId);
+    }
+
+	public void setInput(int id) {
+        this.concertId = id;
+    }
+	/*
+	 * update the amount of tickets left
+	 */
+	public void updateTickets(){
+		Concert c = repository.findOne(concertId);
+		int ticketsSold = c.getTicketsSold();
+		if((ticketsSold + reservedTickets) > c.getTicketstotal()){
+			enoughTickets ="Ikke nok billetter igjen: UTSOLGT!";
+		}else{
+			ticketsSold += reservedTickets;
+			c.setTicketsSold(ticketsSold);
+			repository.update(c);
+		}
 	}
-	public void setArtistRepository(ArtistRepository repo) {
-		this.artistRepository = repo;
-	}
+	
 	/*
 	 * Add a concert if all information needed is provide.
 	 */
@@ -161,7 +163,7 @@ public class ConcertController {
 	 */
 	public List<Concert> getConcertsByTime(){
 		if(checkDates() == 1){
-			concerts = repository.findByDate((Date)getStartDate(), (Date)getStartDate());
+			concerts = repository.findByDate((Date)getStartDate(), (Date)getEndDate());
 			return concerts;
 		}else{
 			errorDate = "Fyll in to datoer";
@@ -169,13 +171,6 @@ public class ConcertController {
 		}
 		
 	}
-    public Concert getInput(){
-        return repository.findOne(concertId);
-    }
-
-	public void setInput(int id) {
-        this.concertId = id;
-    }
 	/*
 	 * make the top 5 concerts reports
 	 */
